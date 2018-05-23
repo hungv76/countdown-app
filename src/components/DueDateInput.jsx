@@ -11,16 +11,12 @@ class DueDateInput extends Component {
   }
 
   handleClick() {
-    console.log('Pressed!!');
     this.props.onClick(this.state.inputValue);
   }
 
   handleInputValueChange(e) {
     const inputValue = e.target.value;
     this.setState({ inputValue });
-    console.log('----------');
-    console.log('state', this.state);
-    console.log('inputValue', inputValue);
   }
 
   render() {

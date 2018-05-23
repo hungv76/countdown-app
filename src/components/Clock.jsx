@@ -3,20 +3,11 @@ import React, { Component } from 'react';
 class Clock extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      time: {
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      },
-    };
-
-    setInterval(() => { this.calculateTime(); }, 1000);
+    this.calculateTime = this.calculateTime.bind(this);
+    setInterval(() => { this.forceUpdate(); }, 1000);
   }
 
   calculateTime() {
-    // const { day, hour, minute, second } = this.state.time;
     const dueDate = Date.parse(this.props.dueDate);
     const now = Date.now();
     const diff = Math.round((dueDate - now) / 1000);
@@ -25,20 +16,18 @@ class Clock extends Component {
     const hours = Math.round(diff / 3600) % 24;
     const days = Math.round(diff / 86400);
 
-    this.setState({
-      time: {
-        seconds, minutes, hours, days,
-      },
-    });
+    return {
+      seconds, minutes, hours, days,
+    };
   }
 
   render() {
     return (
       <div className="">
-        <div>{this.state.time.days} Days</div>
-        <div>{this.state.time.hours} Hour</div>
-        <div>{this.state.time.minutes} Minutes</div>
-        <div>{this.state.time.seconds} Seconds</div>
+        <div>{this.calculateTime().days} Days</div>
+        <div>{this.calculateTime().hours} Hour</div>
+        <div>{this.calculateTime().minutes} Minutes</div>
+        <div>{this.calculateTime().seconds} Seconds</div>
       </div>
     );
   }

@@ -15,7 +15,6 @@ class App extends Component {
 
   setNewDueDate(dueDate) {
     this.setState({ dueDate });
-    // console.log(dueDate);
   }
 
   handleChangeDuedate(newDueDate) {
