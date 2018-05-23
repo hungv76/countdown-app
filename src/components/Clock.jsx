@@ -4,7 +4,14 @@ class Clock extends Component {
   constructor(props) {
     super(props);
     this.calculateTime = this.calculateTime.bind(this);
-    setInterval(() => { this.forceUpdate(); }, 1000);
+    this.state = {
+      ticker: 1,
+    };
+  }
+
+  componentDidMount() {
+    const ticker = this.state.ticker + 1;
+    setInterval(() => { this.setState({ ticker }); }, 1000);
   }
 
   calculateTime() {
