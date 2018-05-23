@@ -11,7 +11,11 @@ class Clock extends Component {
 
   componentDidMount() {
     const ticker = this.state.ticker + 1;
-    setInterval(() => { this.setState({ ticker }); }, 1000);
+    this.timerID = setInterval(() => { this.setState({ ticker }); }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
   }
 
   calculateTime() {
